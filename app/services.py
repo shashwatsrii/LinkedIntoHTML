@@ -10,7 +10,7 @@ async def process_pdf_to_html(file, api_key):
     for page in reader.pages:
         resume_text += page.extract_text()
 
-    prompt = f"Please convert the following resume data into a well-structured, professional HTML format. Ensure the HTML output is fully responsive and visually appealing, utilizing inline CSS for styling. The design should be clean, modern, and optimized for both desktop and mobile viewing. The HTML content should be compatible with all major browsers and appear as though it was crafted by a skilled web developer. Focus on creating a layout that is both functional and aesthetically pleasing. Provide only the HTML content enclosed in the body tag, ensuring that there are no errors in the code. Ignore ```html in the response.  \n\nResume : {resume_text}"
+    prompt = f"Please convert the following resume data into a well-structured, professional HTML format. Ensure the HTML output is fully responsive and visually appealing, utilizing inline CSS for styling. The design should be clean, modern, and optimized for both desktop and mobile viewing. The HTML content should be compatible with all major browsers and appear as though it was crafted by a skilled web developer. Focus on creating a layout that is both functional and aesthetically pleasing. Provide only the HTML content enclosed in the body tag, ensuring that there are no errors in the code. Ignore ```html from the response.  \n\nResume : {resume_text}"
     
     completion = openai.chat.completions.create(
         model="gpt-3.5-turbo-1106",
