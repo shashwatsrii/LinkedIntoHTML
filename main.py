@@ -85,6 +85,51 @@ async def index():
                 input[type="submit"]:hover {
                     background-color: #0056b3;
                 }
+                .tooltip {
+                    position: relative;
+                    display: inline-block;
+                    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+                }
+
+                /* Tooltip text */
+                .tooltip .tooltiptext {
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+
+                    /* Position the tooltip text */
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 100%; /* Place the tooltip above the text */
+                    left: 50%;
+                    margin-left: -60px; /* Use half of the width to center the tooltip */
+
+                    /* Fade in tooltip */
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                /* Tooltip arrow */
+                .tooltip .tooltiptext::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%; /* Below the tooltip */
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: #555 transparent transparent transparent;
+                }
+
+                /* Show the tooltip text when you mouse over the tooltip container */
+                .tooltip:hover .tooltiptext {
+                    visibility: visible;
+                    opacity: 1;
+}
             </style>
         </head>
         <body>
@@ -94,6 +139,9 @@ async def index():
                     <input type="file" name="file" required><br>
                     <label>Enter OpenAI API Key:</label>
                     <input type="password" name="api_key" required><br>
+                    <div class="tooltip">Info
+                        <span class="tooltiptext">Make sure the API key has enough credits. This website makes a call to GPT 3.5 Turbo.</span>
+                    </div><br><br>
                     <input type="submit" value="Generate Resume">
                 </form>
             </div>
